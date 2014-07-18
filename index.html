@@ -14,7 +14,7 @@
 
 	
 	<div class="container">
-		<div class="box clearfix" ng-repeat="b in boxes" id="box{{$index}}" ng-click="b.isDisabled || box($index)" ng-class="{player1 : b.player == players[0]}"</div>
+		<div class="box clearfix" ng-repeat="b in boxes" id="box{{$index}}" ng-click="b.isDisabled || box($index)" ng-class="{player1 : b.player == 'players[0]', player2 : b.player == 'players[1]'}"</div>
 	</div>
 
 	<p>{{boxes[0].isDisabled}}</p>

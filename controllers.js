@@ -43,9 +43,15 @@ ticTacToe.controller('TicTacToeController', function ($scope) {
 			}
 			console.log(eval("$scope."+player));
 			$scope.boxes[cellIndex].isDisabled = true;
-			$scope.boxes.player = player;
-			console.log(player);
+			$scope.boxes[cellIndex].player = player;
 			$scope.turn++;
+
+			for (props in $scope.players[0]){
+					if($scope.players[0][props] == 3){
+						alert("WIN!");
+					}
+				};
+			
 	};
 	
 });
