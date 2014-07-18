@@ -1,0 +1,38 @@
+h1{
+	text-align: center;
+}
+
+.container{
+	width: 600px;
+	height: 600px;
+	margin: 0 auto;
+}
+
+.box{
+	width: 31%;
+	height: 31%;
+	background-color: black;
+	margin: 1%;
+	float: left;
+	cursor: pointer;
+}
+
+.box:hover{
+	background-color: green;
+}
+
+.clearfix:after{
+	content: "";
+	visibility: hidden;
+	display: block;
+	height: 0;
+	clear: both;
+}
+
+.player1{
+	background-color: blue;
+}
+
+.player2{
+	background-color: red;
+}

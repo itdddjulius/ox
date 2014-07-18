@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html ng-app="ticTacToe">
+<head>
+	<title>Tic Tac Toe</title>
+	<link rel="stylesheet" type="text/css" href="style.css" />
+
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.15/angular.min.js"></script>
+	<script type="text/javascript" src="controllers.js"></script>
+
+</head>
+<body ng-controller="TicTacToeController">
+
+	<h1>Tic Tac Toe</h1>
+
+	
+	<div class="container">
+		<div class="box clearfix" ng-repeat="b in boxes" id="box{{$index}}" ng-click="b.isDisabled || box($index)" ng-class="{player1 : b.player == players[0]}"</div>
+	</div>
+
+	<p>{{boxes[0].isDisabled}}</p>
+		
+	</div>
+
+</body>
+</html>
