@@ -31,6 +31,9 @@ ticTacToe.controller('TicTacToeController', function ($scope) {
 		}
 	];
 
+	$scope.newPlayers = angular.copy($scope.players);
+	$scope.newBoxes = angular.copy($scope.boxes);
+
 	$scope.box = function(cellIndex){
 			var player = "players["+$scope.turn%2+"]";
 			eval("$scope."+player+".row"+(Math.floor(cellIndex / 3))+"++");
@@ -44,14 +47,24 @@ ticTacToe.controller('TicTacToeController', function ($scope) {
 			console.log(eval("$scope."+player));
 			$scope.boxes[cellIndex].isDisabled = true;
 			$scope.boxes[cellIndex].player = player;
-			$scope.turn++;
 
-			for (props in $scope.players[0]){
-					if($scope.players[0][props] == 3){
+			for (props in $scope.players[$scope.turn%2]){
+					if($scope.players[$scope.turn%2][props] == 3){
 						alert("WIN!");
+						$scope.gameOver = true;
 					}
 				};
+
+			$scope.turn++;
 			
 	};
+
+	$scope.startOver = function(){
+		$scope.players = $scope.newPlayers;
+		$scope.boxes = $scope.newBoxes;
+		$scope.gameOver = false;
+		$scope.newPlayers = angular.copy($scope.players);
+		$scope.newBoxes = angular.copy($scope.boxes);
+	}
 	
 });
