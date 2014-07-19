@@ -14,11 +14,13 @@
 
 	
 	<div class="container">
-		<div class="box clearfix" ng-repeat="b in boxes" id="box{{$index}}" ng-click="b.isDisabled || gameOver || box($index)" ng-class="{player1 : b.player == 'players[0]', player2 : b.player == 'players[1]'}"</div>
+		<div class="box clearfix" ng-repeat="b in boxes" id="box{{$index}}" ng-click="b.isDisabled || gameOver || box($index)" ng-class="{box : b.player == null, player1 : b.player == 'players[0]', player2 : b.player == 'players[1]', clicked : b.clicked}"</div>
+		</div>
+			
 	</div>
 
-	<button ng-click="startOver()">Start Over</button>
-		
+	<div class="win" ng-show="gameOver">{{currentPlayer.name | uppercase}} WINS!
+		<button ng-click="startOver()">Start Over</button>
 	</div>
 
 </body>

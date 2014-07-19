@@ -2,9 +2,18 @@ var ticTacToe = angular.module('ticTacToe', []);
 
 ticTacToe.controller('TicTacToeController', function ($scope) {
 	
+	// -------- Empty data array for boxes -------- //
+
 	$scope.boxes = [{},{},{},{},{},{},{},{},{}];
 
+
+	// -------- Turns -------- //
+
 	$scope.turn = 0;
+
+	$scope.clicked = true;
+
+	// -------- Player Data -------- //
 
 	$scope.players = [
 		{
@@ -31,8 +40,16 @@ ticTacToe.controller('TicTacToeController', function ($scope) {
 		}
 	];
 
+
+
+	// In order to start the game over with a clean board and player data, 
+	// we make a copy of the first dataset.
+
 	$scope.newPlayers = angular.copy($scope.players);
 	$scope.newBoxes = angular.copy($scope.boxes);
+
+	
+	// -------- Game Logic ---------- //
 
 	$scope.box = function(cellIndex){
 			var player = "players["+$scope.turn%2+"]";
@@ -44,13 +61,13 @@ ticTacToe.controller('TicTacToeController', function ($scope) {
 			if ([2,4,6].indexOf(cellIndex) > -1 ){
 				eval("$scope."+player+".diagonal1++");
 			}
-			console.log(eval("$scope."+player));
 			$scope.boxes[cellIndex].isDisabled = true;
+			$scope.boxes[cellIndex].clicked = true;
 			$scope.boxes[cellIndex].player = player;
 
 			for (props in $scope.players[$scope.turn%2]){
 					if($scope.players[$scope.turn%2][props] == 3){
-						alert("WIN!");
+						$scope.currentPlayer = $scope.players[$scope.turn%2];
 						$scope.gameOver = true;
 					}
 				};
@@ -59,6 +76,10 @@ ticTacToe.controller('TicTacToeController', function ($scope) {
 			
 	};
 
+
+
+	// ------- Start New Game -------- //
+
 	$scope.startOver = function(){
 		$scope.players = $scope.newPlayers;
 		$scope.boxes = $scope.newBoxes;
@@ -66,5 +87,8 @@ ticTacToe.controller('TicTacToeController', function ($scope) {
 		$scope.newPlayers = angular.copy($scope.players);
 		$scope.newBoxes = angular.copy($scope.boxes);
 	}
+
+	// ------ Animations ------ //
 	
 });
+
