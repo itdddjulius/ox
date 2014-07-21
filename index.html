@@ -3,7 +3,8 @@
 <head>
 	<title>Tic Tac Toe</title>
 	<link rel="stylesheet" type="text/css" href="style.css" />
-
+	<link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.15/angular.min.js"></script>
 	<script type="text/javascript" src="controllers.js"></script>
 
@@ -14,13 +15,17 @@
 
 	
 	<div class="container">
-		<div class="box clearfix" ng-repeat="b in boxes" id="box{{$index}}" ng-click="b.isDisabled || gameOver || box($index)" ng-class="{box : b.player == null, player1 : b.player == 'players[0]', player2 : b.player == 'players[1]', clicked : b.clicked}"</div>
+		<div class="box clearfix" ng-repeat="b in boxes" id="box{{$index}}" ng-click="b.isDisabled || gameOver || box($index)" ng-class="{box : b.player == null, player1 : b.player == 'players[0]', player2 : b.player == 'players[1]', clicked : b.clicked}">{{boxes[$index].symbol}}
 		</div>
 			
 	</div>
 
-	<div class="win" ng-show="gameOver">{{currentPlayer.name | uppercase}} WINS!
-		<button ng-click="startOver()">Start Over</button>
+	<div class="win" ng-show="gameOver">
+		<div class="winStatement" ng-hide="gameOver">{{currentPlayer.name}} Wins!</div>
+		<div class="winStatement" ng-show="tie">Nobody Wins...</div>
+		<div class="buttonDiv">
+			<button ng-click="startOver()">Play Again</button>
+		</div>
 	</div>
 
 </body>
