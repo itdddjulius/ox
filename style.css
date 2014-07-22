@@ -3,7 +3,7 @@ body{
 }
 
 h1{
-	text-align: center;
+  text-align: center;
   font-size: 50px;
 }
 
@@ -27,70 +27,72 @@ button:active{
   -webkit-transform: scale3d(.9, .9, .9);
 }
 
-.container{
-	width: 600px;
-	height: 600px;
-	margin: 0 auto;
-	position: relative;
-	-webkit-animation: bounceInDown 1s linear;
+.gameboard{
+  width: 600px;
+  height: 600px;
+  margin: 0 auto;
+  position: relative;
+  -webkit-animation: bounceInDown 1s linear;
+  content: "";
 }
 
-.box{
-	width: 31%;
-	height: 31%;
-	background-color: black;
-	margin: 1%;
-	float: left;
-	cursor: pointer;
+.symbol{
+  margin: 0 auto;
+  height: 90%;
+  width: 100%;
+  position: absolute;
+  top: 10%;
 }
 
-.box:hover{
-	-webkit-transform: scale3d(.9, .9, .9);
+.tile{
+  background-color: black;
+  margin: 1%;
+  float: left;
+  cursor: pointer;
+  position: relative;
+}
+
+.tile:hover{
+  -webkit-transform: scale3d(.9, .9, .9);
 }
 
 .clearfix:after{
-	content: "";
-	visibility: hidden;
-	display: block;
-	height: 0;
-	clear: both;
+  content: "";
+  visibility: hidden;
+  display: block;
+  height: 0;
+  clear: both;
 }
 
 .clicked{
-	-webkit-animation: bounceIn .5s linear;
+  -webkit-animation: bounceIn .5s linear;
 }
 
 .player1{
-	width: 31%;
-	height: 31%;
-	margin: 1%;
-	float: left;
+  float: left;
   text-align: center;
-  font-size: 120px;
-  font-family: 'Lato', sans-serif;
-  line-height: 1.5em;
+  font-family: 'Varela Round', sans-serif;
+  line-height: 1em;
+  position: relative;
 }
 
 .player2{
-	width: 31%;
-	height: 31%;
-	margin: 1%;
-	float: left;
+  float: left;
   text-align: center;
-  font-size: 120px;
-  font-family: 'Lato', sans-serif;
-  line-height: 1.5em;
+  font-family: 'Varela Round', sans-serif;
+  line-height: 1em;
+  position: relative;
 }
 
 .win{
-	width: 30%;
-	height: 400px;
-	position: absolute;
+  width: 30%;
+  height: 300px;
+  position: absolute;
   border-radius: 5px;
-	top: 20%;
-	left: 35%;
-	background-color: rgba(255,255,255,.95);
-	-webkit-animation: zoomIn .5s;
+  top: 20%;
+  left: 35%;
+  background-color: rgba(255,255,255,.98);
+  -webkit-animation: zoomIn .5s;
 }
 
 .winStatement{
@@ -102,7 +104,7 @@ button:active{
 
 .buttonDiv{
   width: 60%;
-  margin: 0 auto;
+  margin: 100px auto 0;
 }
 
 
