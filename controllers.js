@@ -1,4 +1,4 @@
-var ticTacToe = angular.module('ticTacToe', []);
+var ticTacToe = angular.module('ticTacToe', ["firebase"]);
 
 ticTacToe
 	
@@ -7,7 +7,7 @@ ticTacToe
 	.directive('gameboard', function() {
 		return {
 			restrict: 'A',
-			template: '<div tile ng-repeat="b in boxes" ng-click="box($index)" ng-class="{tile : b.player == null, player1 : b.player == 0, player2 : b.player == 1, clicked : b.clicked}"><div class="symbol">{{boxes[$index].symbol}}</div></div>',
+			template: '<div tile ng-repeat="b in boxes" ng-click="b.clicked || gameOver || box($index)" ng-class="{tile : b.player == null, player1 : b.player == 0, player2 : b.player == 1, clicked : b.clicked}"><div class="symbol">{{boxes[$index].symbol}}</div></div>',
 			link: function (s, e, attrs){
 				e.addClass('gameboard');
 			}
@@ -27,14 +27,19 @@ ticTacToe
 					width: (100 / boardWidth) - (boardWidth / 2) + "%",
 					height: (100 / boardWidth) - (boardWidth / 2) + "%",
 					margin: boardWidth * 1.3 + 'px',
-					fontSize: (200 / (boardWidth * boardWidth)) + 'em'
+					fontSize: (18 / boardWidth) + 'em'
 				})
 			}
 		};
 	})
 
-	.controller('TicTacToeController', function ($scope) {
+	.controller('TicTacToeController', function ($scope, $firebase) {
 	
+	var TicTacToeRef = new Firebase("https://nickmro-tic-tac-toe.firebaseio.com/") ;
+
+ 		$scope.turnCounter = $firebase(new Firebase("https://nickmro-tic-tac-toe.firebaseio.com/" + '/turnCounter'));
+ 		$scope.turnCounter.$add({turn: 0});
+
 	// -------- Empty data array for boxes -------- //
 
 	$scope.boxes = [];
@@ -98,13 +103,14 @@ ticTacToe
 						$scope.currentPlayer = $scope.players[playTurn];
 						$scope.gameOver = true;
 					}
-					else if($scope.turn == (boardWidth * boardWidth)){
+					else if($scope.turn == (boardWidth * boardWidth - 1)){
 						$scope.gameOver = true;
 						$scope.tie = true;
 					}
 				};
 			
 			$scope.turn++;
+			$scope.turnCounter.$set({turnCounter: $scope.turn});
 	};
 
 

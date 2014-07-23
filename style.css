@@ -1,10 +1,13 @@
 body{
   font-family: 'Oswald', sans-serif;
+  background-color: rgba(131,175,155,1);
+  color: white;
+  text-shadow: 2px 2px 2px rgba(100,100,100,1);
 }
 
 h1{
   text-align: center;
-  font-size: 50px;
+  font-size: 80px;
 }
 
 button{
@@ -17,14 +20,15 @@ button{
   padding: 10px;
   font-size: 22px;
   cursor: pointer;
+  box-shadow: 2px 2px 2px rgba(100,100,100,1);
 }
 
 button:hover{
-  background-color: rgba(212,106,106,1);
+  background-color: rgba(249,205,173,1);
 }
 
 button:active{
-  -webkit-transform: scale3d(.9, .9, .9);
+  -webkit-animation: buttonDown .2s forwards;
 }
 
 .gameboard{
@@ -38,22 +42,23 @@ button:active{
 
 .symbol{
   margin: 0 auto;
-  height: 90%;
+  height: 50%;
   width: 100%;
   position: absolute;
-  top: 10%;
+  top: 25%;
 }
 
 .tile{
-  background-color: black;
-  margin: 1%;
+  background-color: white;
   float: left;
   cursor: pointer;
   position: relative;
+  border-radius: 5%;
+  box-shadow: 2px 2px 2px rgba(100,100,100,1)
 }
 
 .tile:hover{
-  -webkit-transform: scale3d(.9, .9, .9);
+  -webkit-animation: tileHover .2s forwards;
 }
 
 .clearfix:after{
@@ -84,19 +89,22 @@ button:active{
   position: relative;
 }
 
+.gameOver{
+  -webkit-animation: leaveRight .5s forwards;
+}
+
 .win{
+  position: absolute;
   width: 30%;
   height: 300px;
-  position: absolute;
   border-radius: 5px;
-  top: 20%;
+  top: 30%;
   left: 35%;
-  background-color: rgba(255,255,255,.98);
-  -webkit-animation: zoomIn .5s;
+  -webkit-animation: enterRight .5s;
 }
 
 .winStatement{
-  font-size: 34px;
+  font-size: 50px;
   width: 70%;
   margin: 50px auto;
   text-align: center;
@@ -104,7 +112,7 @@ button:active{
 
 .buttonDiv{
   width: 60%;
-  margin: 100px auto 0;
+  margin: 50px auto 0;
 }
 
 
@@ -188,41 +196,72 @@ button:active{
   }
 }
 
-/* Zoom In */
+@keyframes bounceInDown {
+  0%, 60%, 75%, 90%, 100% {
+    -webkit-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+  }
 
-@-webkit-keyframes zoomIn {
   0% {
     opacity: 0;
-    -webkit-transform: scale3d(.3, .3, .3);
-    transform: scale3d(.3, .3, .3);
+    -webkit-transform: translate3d(0, -3000px, 0);
+    -ms-transform: translate3d(0, -3000px, 0);
+    transform: translate3d(0, -3000px, 0);
+  }
+
+  60% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 25px, 0);
+    -ms-transform: translate3d(0, 25px, 0);
+    transform: translate3d(0, 25px, 0);
   }
 
   75% {
-    opacity: 1;
+    -webkit-transform: translate3d(0, -10px, 0);
+    -ms-transform: translate3d(0, -10px, 0);
+    transform: translate3d(0, -10px, 0);
+  }
+
+  90% {
+    -webkit-transform: translate3d(0, 5px, 0);
+    -ms-transform: translate3d(0, 5px, 0);
+    transform: translate3d(0, 5px, 0);
+  }
+
+  100% {
+    -webkit-transform: none;
+    -ms-transform: none;
+    transform: none;
   }
 }
 
-@keyframes zoomIn {
-  0% {
-    opacity: 0;
-    -webkit-transform: scale3d(.3, .3, .3);
-    -ms-transform: scale3d(.3, .3, .3);
-    transform: scale3d(.3, .3, .3);
-  }
-
-  75% {
-    opacity: 1;
-  }
-}
-
-/* Hover Over */
-@-webkit-keyframes hoverOver{
-  0% {
-    opacity: 0;
-  }
-
+/* Tile Hover */
+@-webkit-keyframes tileHover{
   100%{
-     -webkit-transform: scale3d(.8, .8, .8);
-    opacity: 1;
+    -webkit-transform: scale3d(.95, .95, .95);
+  }
+}
+
+/* Button Down */
+@-webkit-keyframes buttonDown{
+  100% {
+    -webkit-transform: translateY(4px);
+  }
+}
+
+/* Leave Right */
+@-webkit-keyframes leaveRight{
+  100% {
+    -webkit-transform: translateY(200px) scale3d(.3, .3, .3);
+  }
+}
+
+/* Enter Left */
+@-webkit-keyframes enterRight{
+  0% {
+    -webkit-transform: translateX(-2000px);
+  }
+  100% {
+    -webkit-transform: translateX(0px);
   }
 }
