@@ -1,4 +1,4 @@
-var ticTacToe = angular.module('ticTacToe', ["firebase"]);
+var ticTacToe = angular.module('ticTacToe', ['firebase']);
 
 ticTacToe
 	
@@ -7,7 +7,7 @@ ticTacToe
 	.directive('gameboard', function() {
 		return {
 			restrict: 'A',
-			template: '<div tile ng-repeat="b in boxes" ng-click="b.clicked || gameOver || box($index)" ng-class="{tile : b.player == null, player1 : b.player == 0, player2 : b.player == 1, clicked : b.clicked, noClick : gameOver, winColor : b.colorMe}"><div class="symbol">{{boxes[$index].symbol}}</div></div>',
+			template: '<div tile ng-repeat="b in boxes" ng-click="b.clicked || gameOver || box($index)" ng-class="{tile : b.player == null, player1 : b.player == 0, player2 : b.player == 1, clicked : b.clicked}"><div class="symbol">{{boxes[$index].symbol}}</div></div>',
 			link: function (s, e, attrs){
 				e.addClass('gameboard');
 			}
@@ -24,50 +24,74 @@ ticTacToe
 				boardWidth = Math.sqrt(s.boxes.length);
 
 				e.css({
-					width: (100 / boardWidth) - (boardWidth) + "%",
-					height: (100 / boardWidth) - (boardWidth) + "%",
-					margin: boardWidth * .5 + '%',
+					width: (100 / boardWidth) - (boardWidth / 2) + "%",
+					height: (100 / boardWidth) - (boardWidth / 2) + "%",
+					margin: boardWidth * 1.3 + 'px',
 					fontSize: (18 / boardWidth) + 'em'
 				})
 			}
 		};
 	})
 
+
+	//Set tile styling directive to make sizes scaleable
+
 	.controller('TicTacToeController', function ($scope, $firebase) {
 	
-		var TicTacToeRef = new Firebase("https://nickmro-tic-tac-toe.firebaseio.com/") ;
-
-	 		$scope.turnCounter = $firebase(new Firebase("https://nickmro-tic-tac-toe.firebaseio.com/" + '/turnCounter'));
-	 		$scope.turnCounter.$add({turn: 0});
+		$scope.remoteBoxes = $firebase(new Firebase("https://nickmro-tic-tac-toe.firebaseio.com/remoteBoxes"));
+	 		
 
 		// -------- Boxes and Box Data -------- //
 
-		$scope.boxes = [];
+		$scope.boxes = [
+			{id: 0, player:2, clicked:false, colorMe: false, symbol: ""},
+			{id: 1, player:2, clicked:false, colorMe: false, symbol: ""},
+			{id: 2, player:2, clicked:false, colorMe: false, symbol: ""},
+			{id: 3, player:2, clicked:false, colorMe: false, symbol: ""},
+			{id: 4, player:2, clicked:false, colorMe: false, symbol: ""},
+			{id: 5, player:2, clicked:false, colorMe: false, symbol: ""},
+			{id: 6, player:2, clicked:false, colorMe: false, symbol: ""},
+			{id: 7, player:2, clicked:false, colorMe: false, symbol: ""},
+			{id: 8, player:2, clicked:false, colorMe: false, symbol: ""}
+		];
 
-		$scope.makeBoxes = function(num){
-			for (i = 0; i < (num * num); i++){
-				$scope.boxes.push({})
-			}
-		}
-
-		$scope.makeBoxes(3);
-
+		
 		// -------- Turns and Other  -------- //
 
 		$scope.begin = true;
 
 		$scope.turn = 0; //will change every turn
 
+		$scope.gameOver = false;
+
+		$scope.tie = false;
+
 		// -------- Player Data -------- //
 
 		$scope.players = [
 			{
 				name: "",
-				symbol: "X"
+				symbol: "X",
+				row0: 0,
+				row1: 0,
+				row2: 0,
+				column0: 0,
+				column1: 0,
+				column2: 0,
+				diagonal0: 0,
+				diagonal1: 0
 			},
 			{
 				name: "",
-				symbol: "O"
+				symbol: "O",
+				row0: 0,
+				row1: 0,
+				row2: 0,
+				column0: 0,
+				column1: 0,
+				column2: 0,
+				diagonal0: 0,
+				diagonal1: 0
 			}
 		];
 
@@ -90,35 +114,34 @@ ticTacToe
 		// -------- Game Logic ---------- //
 
 		$scope.box = function(cellIndex){
-				var playTurn = $scope.turn%2;
+				var cellId = cellIndex.id;
+				var playTurn = $scope.turn %2 ;
 				var player = $scope.players[playTurn];
 				var playerString = "players["+playTurn+"]";
-				var boardWidth = Math.sqrt($scope.boxes.length);
-				eval("$scope."+playerString+".row"+(Math.floor(cellIndex / boardWidth))+" ? $scope."+playerString+".row"+(Math.floor(cellIndex / boardWidth))+"++ : $scope."+playerString+".row"+(Math.floor(cellIndex / boardWidth))+" = 1" );
-				eval("$scope."+playerString+".column"+(cellIndex % boardWidth)+" ? $scope."+playerString+".column"+(cellIndex % boardWidth)+"++ : $scope."+playerString+".column"+(cellIndex % boardWidth)+" = 1");
+				eval("$scope."+playerString+".row"+(Math.floor(cellId / 3))+"++");
+				eval("$scope."+playerString+".column"+(cellId % 3)+"++");
 
-				if (cellIndex % (boardWidth + 1) == 0){
-					eval("$scope."+playerString+".diagonal0 ? $scope."+playerString+".diagonal0++ : $scope."+playerString+".diagonal0 = 1");
+				if (cellId % (4) == 0){
+					eval("$scope."+playerString+".diagonal0++");
 				}
-				if (cellIndex % (boardWidth - 1) == 0 && cellIndex > 0 && cellIndex < ($scope.boxes.length - 1)){
-					eval("$scope."+playerString+".diagonal1 ? $scope."+playerString+".diagonal1++ : $scope."+playerString+".diagonal1 = 1");
+				if (cellId % (2) == 0 && cellId > 0 && cellId < 2){
+					eval("$scope."+playerString+".diagonal1++");
 				}
-				$scope.boxes[cellIndex].clicked = true;
-				$scope.boxes[cellIndex].player = playTurn;
-				$scope.boxes[cellIndex].symbol = player.symbol;
+				cellIndex.clicked = true;
+				cellIndex.player = playTurn;
+				cellIndex.symbol = player.symbol;
 
 				for (props in $scope.players[playTurn]){
-						if($scope.players[playTurn][props] == Math.sqrt($scope.boxes.length)){
+						if($scope.players[playTurn][props] == 3){
 							$scope.win(playTurn, props); //Call the win function, which is created below
 						}
-						else if($scope.turn == (boardWidth * boardWidth - 1)){
+						else if($scope.turn == (8)){
 							$scope.gameOver = true;
 							$scope.tie = true;
 						}
 					};
 				
 				$scope.turn++;
-				$scope.turnCounter.$set({turnCounter: $scope.turn});
 		};
 
 
@@ -176,6 +199,8 @@ ticTacToe
 				}
 			}
 		}
+
+		$scope.remoteBoxes.$bind($scope, "boxes");
 	
 });
 

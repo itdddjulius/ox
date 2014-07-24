@@ -19,15 +19,17 @@
 
 		<p>Enter your name:</p>
 		<form>
-		<input type="text" placeholder = "Player 1"ng-model="players[0].name"/>
-		<input type="text" placeholder = "Player 2"ng-model="players[1].name"/>
-		<input type="submit" value="Start Game" ng-click="gameEnter()"/>
+			<input type="text" placeholder = "Player 1"ng-model="players[0].name"/>
+			<input type="text" placeholder = "Player 2"ng-model="players[1].name"/>
+			<input type="submit" value="Start Game" ng-click="gameEnter()"/>
 		</form>
 
 	</div>
 
 	
-	<div gameboard ng-class="{gameOver: gameOver}" ng-hide="begin">
+	<div class="gameboard" ng-class="{gameOver: gameOver}" ng-hide="begin">
+
+		<div ng-repeat="b in boxes" ng-click="b.clicked || gameOver || box(b)" ng-class="{tile : b.player == 2, player1 : b.player == 0, player2 : b.player == 1, clicked : b.clicked, noClick : gameOver, winColor : b.colorMe}"><div class="symbol">{{b.symbol}}</div></div>
 
 	</div>
 

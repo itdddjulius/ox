@@ -70,9 +70,13 @@ button:active{
 
 .tile{
   background-color: white;
+  width: 30%;
+  height: 30%;
+  margin: 1%;
   float: left;
   cursor: pointer;
   position: relative;
+  font-size: 20px;
   border-radius: 5%;
   box-shadow: 2px 2px 2px rgba(100,100,100,1)
 }
@@ -106,19 +110,18 @@ Particular Game Conditions -------- */
   -webkit-animation: bounceIn .5s linear;
 }
 
-.player1{
+.player1, .player2{
+  width: 30%;
+  height: 30%;
+  margin: 1%;
+  font-size: 80px;
   float: left;
   font-family: 'Varela Round', sans-serif;
   line-height: 1em;
   position: relative;
+  color: white;
 }
 
-.player2{
-  float: left;
-  font-family: 'Varela Round', sans-serif;
-  line-height: 1em;
-  position: relative;
-}
 
 .gameOver{
   -webkit-animation: shrinkDown .5s forwards;
