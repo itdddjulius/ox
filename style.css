@@ -155,8 +155,12 @@ Particular Game Conditions -------- */
   margin: 50px auto;
 }
 
-.winColor{
+div .player1WinColor{
   color: rgba(177,57,57,1);
+}
+
+div .player2WinColor{
+  color: rgba(249,205,173,1);
 }
 
 .buttonDiv{
@@ -164,6 +168,47 @@ Particular Game Conditions -------- */
   margin: 50px auto 0;
 }
 
+/* ----- Past Games Data Section ----- */
+
+.pastGamesContainer{
+  margin: 0 auto;
+}
+
+.gameStats{
+  width: 300px;
+  height: 300px;
+  float: left;
+  font-size: 20px;
+}
+
+.miniBoard{
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+  position: relative;
+  -webkit-animation: bounceInDown 1s linear;
+  content: "";
+}
+
+.player1Mini, .player2Mini{
+  width: 30%;
+  height: 30%;
+  margin: 1%;
+  font-size: 40px;
+  float: left;
+  font-family: 'Varela Round', sans-serif;
+  line-height: 1em;
+  position: relative;
+  color: white;
+}
+
+.miniSymbol{
+  margin: 0 auto;
+  height: 50%;
+  width: 100%;
+  position: absolute;
+  top: 25%;
+}
 
 /* ----- Animations ----- */
 
@@ -301,7 +346,7 @@ Particular Game Conditions -------- */
 /* Shrink Down */
 @-webkit-keyframes shrinkDown{
   100% {
-    -webkit-transform: translateY(50%) scale3d(.3, .3, .3);
+    -webkit-transform: translateY(250px) scale3d(.3, .3, .3);
   }
 }
 
