@@ -3,15 +3,15 @@
 <head>
 	<title>Tic Tac Toe</title>
 	<link rel="stylesheet" type="text/css" href="style.css" />
-	<link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
-	<link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.20/angular.min.js"></script>
 	<script type='text/javascript' src='https://cdn.firebase.com/js/client/1.0.17/firebase.js'></script>
     <script src="https://cdn.firebase.com/libs/angularfire/0.7.1/angularfire.min.js"></script>
 	<script type="text/javascript" src="controllers.js"></script>
 
 </head>
-<body ng-controller="TicTacToeController" ng-model="gameContainer">
+<body ng-controller="TicTacToeController" ng-model="localGames">
 
 	<h1>Tic Tac Toe</h1>
 
@@ -19,17 +19,22 @@
 
 		<p>Enter your name:</p>
 		<form>
-			<input type="text" placeholder = "Player 1" ng-init="name" ng-model="name"/>
-			<input type="text" placeholder = "Player 2" ng-model="players[1].name"/>
+			<input type="text" placeholder = "Player 1" ng-model="playerName"/>
 			<input type="submit" value="Start Game" ng-click="gameEnter()"/>
 		</form>
 
+		<div ng-show="nameWarning">Must Enter Valid Name!</div>
+
+	</div>
+
+	<div class="waitView" ng-show="waitView">
+		<div>Waiting for other player...</div>
 	</div>
 
 	<div class="gameView" ng-show="gameView" >
-		<div class="gameboard" ng-class="{gameOver: gameOver}" ng-model="gameContainer">
+		<div class="gameboard" ng-class="{gameOver: gameOver}" ng-model="localGames">
 
-			<div ng-repeat="b in gameContainer.board.boxes" ng-click="b.clicked || gameOver || box(b)" ng-class="{tile : b.player == 2, player1 : b.player == 0, player2 : b.player == 1, clicked : b.clicked, noClick : gameOver, player1WinColor : b.colorMe == 'X', player2WinColor : b.colorMe == 'O'}">
+			<div ng-repeat="b in localGames[gameId].boxes" ng-click="b.clicked || gameOver || box(b)" ng-class="{tile : b.player == 2, player1 : b.player == 0, player2 : b.player == 1, clicked : b.clicked, noClick : gameOver, player1WinColor : b.colorMe == 'X', player2WinColor : b.colorMe == 'O'}">
 				<div class="symbol">{{b.symbol}}</div>
 			</div>
 
@@ -39,7 +44,7 @@
 			<div class="winStatement" ng-hide="tie">{{currentPlayer.name}} Wins!</div>
 			<div class="winStatement" ng-show="tie">Nobody Wins...</div>
 			<div class="buttonDiv">
-				<button ng-click="startOver()">Play Again</button>
+				<button ng-click="playAgain()">Play Again</button>
 			</div>
 			<div class="buttonDiv">
 				<button ng-click="viewPastGames()">View Past Games</button>
@@ -48,20 +53,20 @@
 
 	</div>
 
-	<div class="pastGamesContainer" ng-show="pastView">
+	<div class="pastGamesContainer" ng-show="pastView" ng-model="pastGamesContainer">
 		<div ng-repeat="p in pastGamesContainer.pastGames" class="gameStats">
 			<div class="miniBoard">
-				<div ng-repeat="b in p.board.boxes" ng-class="{tile : b.player == 2, player1Mini : b.player == 0, player2Mini : b.player == 1, clicked : b.clicked, noClick : gameOver, player1WinColor : b.colorMe == 'X', player2WinColor : b.colorMe == 'O'}">
+				<div ng-repeat="b in p.boxes" ng-class="{tile : b.player == 2, player1Mini : b.player == 0, player2Mini : b.player == 1, clicked : b.clicked, noClick : gameOver, player1WinColor : b.colorMe == 'X', player2WinColor : b.colorMe == 'O'}">
 					<div class="miniSymbol">{{b.symbol}}</div>
 				</div>
 			</div>
 			<div>
 				<div>Game {{$index + 1}}</div>
-				<div>Winner: {{p.board.winner}}</div>
+				<div>Winner: {{p.winner}}</div>
 
 			</div>
 		</div>
-			<button ng-click="startOver()">Play Again</button>
+			<button ng-click="playAgain()">Play Again</button>
 	</div>
 
 </body>
