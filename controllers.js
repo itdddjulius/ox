@@ -68,6 +68,9 @@ ticTacToe
 
 		// -------- Enter the game -------- //
 
+		$scope.player1Name = "Player 1";
+		$scope.player2Name = "Player 2";
+
 		$scope.gameEnter = function(){
 			$scope.players = [
 				{ name: $scope.player1Name, symbol: "X", row0: 0, row1: 0, row2: 0, column0: 0, column1: 0, column2: 0, diagonal0: 0, diagonal1: 0},

@@ -1,22 +1,24 @@
 /* -------- Document-Wide Styling -------- */
 
+@import url(http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300);
+
 body{
-  font-family: 'Oswald', sans-serif;
-  background-color: rgba(131,175,155,1);
-  color: white;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-weight: 300;
+  color: rgb(42,40,41);
   text-align: center;
   width: 100%;
   
 }
 
 h1{
-  font-size: 80px;
-  text-shadow: 2px 2px 2px rgba(100,100,100,1);
+  font-size: 60px;
+  font-weight: 300;
 }
 
 h2{
   font-size: 50px;
-  color: rgba(177,57,57,1);
+  color: rgb(42,40,41);
 }
 
 button{
@@ -24,34 +26,55 @@ button{
   border-radius: 8px;
   border: none;
   outline: none;
-  background-color: rgba(177,57,57,1);
+  background-color: rgb(42,40,41);
   color: white;
   padding: 10px;
   font-size: 22px;
   cursor: pointer;
-  box-shadow: 2px 2px 2px rgba(100,100,100,1);
+  box-shadow: 2px 2px 2px rgb(100,100,100,1);
 }
 
 button:hover{
-  background-color: rgba(177,57,57,1);
+  background-color: rgba(42,40,41);
 }
 
 button:active{
   -webkit-animation: buttonDown .2s forwards;
 }
 
+a{
+  color: rgb(212,87,85);
+  text-decoration: none;
+}
+
 /* -------- Welcome Panel -------- */
 
 .welcome{
-  width: 500px;
-  border-radius: 5px;
-  margin: 0 auto;
-  padding: 30px;
+   -webkit-animation: bounceInDown .5s;
+   animation: bounceInDown .5s;
+}
+
+.about{
+  width: 600px;
+  margin: 100px auto;
+  text-align: left;
+  font-size: 18px;
+}
+
+.about>div{
+  margin: 30px auto;
+}
+
+.iconDiv{
+  text-align: center;
+}
+
+.iconDiv>a{
   color: black;
-  background-color: white;
-  font-size: 50px;
-  box-shadow: 5px 5px 5px rgba(100,100,100,1);
-  -webkit-animation: bounceInDown .5s;
+}
+
+.iconDiv>a:hover{
+  color: #aaa;
 }
 
 /* -------- Gameboard -------- */
@@ -69,8 +92,8 @@ button:active{
 /* -------- Individual Tiles -------- */
 
 .tile{
-  background-color: white;
-  width: 30%;
+  background-color: #6baed6;
+  width: 31%;
   height: 30%;
   margin: 1%;
   float: left;
@@ -91,7 +114,7 @@ button:active{
   width: 100%;
   position: absolute;
   top: 25%;
-  text-shadow: 2px 2px 2px rgba(100,100,100,1);
+  text-shadow: 2px 2px 2px rgba(200,200,200,1);
 }
 
 
@@ -111,7 +134,7 @@ Particular Game Conditions -------- */
 }
 
 .player1, .player2{
-  width: 30%;
+  width: 31%;
   height: 30%;
   margin: 1%;
   font-size: 80px;
@@ -119,21 +142,24 @@ Particular Game Conditions -------- */
   font-family: 'Varela Round', sans-serif;
   line-height: 1em;
   position: relative;
-  color: white;
+  color: rgb(42,40,41);
 }
 
 
 .gameOver{
   -webkit-animation: shrinkDown .5s forwards;
+  animation: shrinkDown .5s forwards;
 }
 
 .noClick{
   cursor: auto;
   -webkit-animation: none;
+  animation: none;
 }
 
 .noClick:hover{
   -webkit-animation: none;
+  animation: none;
 }
 
 
@@ -144,7 +170,7 @@ Particular Game Conditions -------- */
   width: 30%;
   height: 300px;
   border-radius: 5px;
-  top: 25%;
+  top: 30%;
   left: 35%;
   -webkit-animation: bounceInDown .5s;
 }
@@ -152,31 +178,32 @@ Particular Game Conditions -------- */
 .winStatement{
   font-size: 50px;
   width: 70%;
-  margin: 50px auto;
+  margin: 20px auto;
 }
 
 div .player1WinColor{
-  color: rgba(177,57,57,1);
+  color: rgb(97,83,117);
 }
 
 div .player2WinColor{
-  color: rgba(249,205,173,1);
+  color: rgb(229,98,92);
 }
 
 .buttonDiv{
-  width: 60%;
-  margin: 50px auto 0;
+  width: 200px;
+  margin: 30px auto 0;
 }
 
 /* ----- Past Games Data Section ----- */
 
 .pastGamesContainer{
+  width: 720px;
   margin: 0 auto;
 }
 
 .gameStats{
-  width: 300px;
-  height: 300px;
+  width: 240px;
+  height: 360px;
   float: left;
   font-size: 20px;
 }
@@ -184,14 +211,27 @@ div .player2WinColor{
 .miniBoard{
   width: 200px;
   height: 200px;
-  margin: 0 auto;
+  margin: 40px auto;
   position: relative;
   -webkit-animation: bounceInDown 1s linear;
   content: "";
 }
 
+.miniTile{
+  background-color: #ededed;
+  width: 31%;
+  height: 30%;
+  margin: 1%;
+  float: left;
+  cursor: pointer;
+  position: relative;
+  font-size: 20px;
+  border-radius: 5%;
+  box-shadow: 2px 2px 2px rgba(100,100,100,1)
+}
+
 .player1Mini, .player2Mini{
-  width: 30%;
+  width: 31%;
   height: 30%;
   margin: 1%;
   font-size: 40px;
@@ -199,7 +239,7 @@ div .player2WinColor{
   font-family: 'Varela Round', sans-serif;
   line-height: 1em;
   position: relative;
-  color: white;
+  color: #ccc;
 }
 
 .miniSymbol{
@@ -208,6 +248,14 @@ div .player2WinColor{
   width: 100%;
   position: absolute;
   top: 25%;
+}
+
+.miniBoardText{
+  margin: 20px auto;
+}
+
+.miniBoardButton{
+  width: 200px;
 }
 
 /* ----- Animations ----- */

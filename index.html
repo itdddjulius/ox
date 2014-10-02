@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html ng-app="ticTacToe">
 <head>
-	<title>Tic Tac Toe</title>
+	<title>Tic Tac Toe Data Visualizer</title>
+	<link href="normalize.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="style.css" />
+	<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 	<link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.20/angular.min.js"></script>
@@ -13,18 +15,22 @@
 </head>
 <body ng-controller="TicTacToeController" ng-model="gameContainer">
 
-	<h1>Tic Tac Toe</h1>
+	<h1>Tic Tac Toe<br>Data Visualizer</h1>
 
-	<div class="welcome" ng-show="welcomeView">
+	<div class="buttonDiv welcome" ng-show="welcomeView">
+		<button ng-click="gameEnter()">Start Game</button>
+	</div>
 
-		<p>Enter your name:</p>
-		<form>
-			<input type="text" placeholder = "Player 1" ng-init="player1Name" ng-model="player1Name"/>
-			<input type="text" placeholder = "Player 2" ng-init="player2Name" ng-model="player2Name"/>
-			<input type="submit" value="Start Game" ng-click="gameEnter()"/>
-		</form>
+	<div class="about" ng-show="welcomeView">
+
+		<div><b>About the Game</b>: Click "Start Game" to play a match. After a game is complete, look at past game boards to gain insight on your opponent's strategies or just play another game. It can also be played on two screens simultaneously so find a friend and enjoy!</div>
+
+		<div><b>About the Project</b>: The Tic Tac Toe Data Visualizer was produced by <a href="http://www.nickmro.com" target="_blank">Nick Mrozowski</a> as his first project for General Assembly's <a href="https://generalassemb.ly/education/web-development-immersive" target="_blank">Web Development Immersive</a> program. It was built using AngularJS and Firebase.</div>
+
+		<div class="iconDiv"><a href="https://github.com/nickmro/Tic-Tac-Toe-Game" target="_blank"><i class="fa fa-github fa-2x"></i></a></div>
 
 	</div>
+
 
 	<div class="gameView" ng-show="gameView" >
 		<div class="gameboard" ng-class="{gameOver: gameOver}" ng-model="gameContainer">
@@ -49,19 +55,23 @@
 	</div>
 
 	<div class="pastGamesContainer" ng-show="pastView">
-		<div ng-repeat="p in pastGamesContainer.pastGames" class="gameStats">
-			<div class="miniBoard">
-				<div ng-repeat="b in p.board.boxes" ng-class="{tile : b.player == 2, player1Mini : b.player == 0, player2Mini : b.player == 1, clicked : b.clicked, noClick : gameOver, player1WinColor : b.colorMe == 'X', player2WinColor : b.colorMe == 'O'}">
-					<div class="miniSymbol">{{b.symbol}}</div>
+		<div class="clearfix">
+			<div ng-repeat="p in pastGamesContainer.pastGames" class="gameStats">
+				<div class="miniBoard">
+					<div ng-repeat="b in p.board.boxes" ng-class="{miniTile : b.player == 2, player1Mini : b.player == 0, player2Mini : b.player == 1, clicked : b.clicked, noClick : gameOver, player1WinColor : b.colorMe == 'X', player2WinColor : b.colorMe == 'O'}">
+						<div class="miniSymbol">{{b.symbol}}</div>
+					</div>
+				</div>
+				<div class="miniBoardText">
+					<div>Game {{$index + 1}}</div>
+					<div>Winner: {{p.board.winner}}</div>
+
 				</div>
 			</div>
-			<div>
-				<div>Game {{$index + 1}}</div>
-				<div>Winner: {{p.board.winner}}</div>
-
-			</div>
 		</div>
-			<button ng-click="startOver()">Play Again</button>
+		<div>
+			<button ng-click="startOver()" class="miniBoardButton">Play Again</button>
+		</div>
 	</div>
 
 </body>
