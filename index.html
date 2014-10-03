@@ -15,10 +15,11 @@
 </head>
 <body ng-controller="TicTacToeController" ng-model="gameContainer">
 
-	<h1>Tic Tac Toe<br>Data Visualizer</h1>
+	<h1>Tic Tac Toe</h1>
 
-	<div class="buttonDiv welcome" ng-show="welcomeView">
-		<button ng-click="gameEnter()">Start Game</button>
+	<div ng-click="gameEnter()" ng-show="welcomeView">
+		<img src="images/logo.png" alt="START GAME" />
+		<div class="start">START GAME</div>
 	</div>
 
 	<div class="about" ng-show="welcomeView">
@@ -45,10 +46,9 @@
 			<div class="winStatement" ng-hide="tie">{{currentPlayer.name}} Wins!</div>
 			<div class="winStatement" ng-show="tie">Nobody Wins...</div>
 			<div class="buttonDiv">
-				<button ng-click="startOver()">Play Again</button>
-			</div>
-			<div class="buttonDiv">
-				<button ng-click="viewPastGames()">View Past Games</button>
+				<div ng-click="startOver()" class="buttonPress">Play Again</div> 
+				<div>//</div>
+				<div ng-click="viewPastGames()" class="buttonPress">Past Games</div>
 			</div>
 		</div>
 
