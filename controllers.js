@@ -13,6 +13,11 @@ ticTacToe
 		$scope.welcomeView = true;
 		$scope.gameView = false;
 		$scope.pastView = false;
+		$scope.infoBoxView = false;
+
+		$scope.triggerInfoBox = function(){
+			$scope.infoBoxView = true;
+		}
 
 
 		// -------- Game Container Data -------- //
@@ -77,7 +82,6 @@ ticTacToe
 				{ name: $scope.player2Name, symbol: "O", row0: 0, row1: 0, row2: 0, column0: 0, column1: 0, column2: 0, diagonal0: 0, diagonal1: 0}
 			];
 			
-			console.log($scope.playerId)
 			$scope.welcomeView = false;
 			$scope.gameView = true;
 			$scope.newPlayers = angular.copy($scope.players);
@@ -87,11 +91,15 @@ ticTacToe
 		// Watch player names and update if changed
 
 		$scope.$watch( 'player1Name', function(){
-			$scope.players[0].name = $scope.player1Name;
+			if ($scope.gameView){
+				$scope.players[0].name = $scope.player1Name;
+			};
 		} );
 
 		$scope.$watch( 'player2Name', function(){
-			$scope.players[1].name = $scope.player1Name;
+			if ($scope.gameView){
+				$scope.players[1].name = $scope.player2Name;
+			};
 		} );
 
 
@@ -129,7 +137,6 @@ ticTacToe
 				}
 
 				$scope.turn++;
-				console.log($scope.players);
 		};
 
 
@@ -164,7 +171,6 @@ ticTacToe
 		$scope.startOver = function(){
 			$scope.players = $scope.newPlayers;
 			$scope.gameContainer = $scope.newBoard;
-			console.log($scope.board);
 			$scope.gameOver = false;
 			$scope.newPlayers = angular.copy($scope.players);
 			$scope.newBoard = angular.copy($scope.gameContainer);

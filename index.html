@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html ng-app="ticTacToe">
 <head>
-	<title>Tic Tac Toe Data Visualizer</title>
+	<title>Tic Tac Toe by NickMro</title>
 	<link href="normalize.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="style.css" />
 	<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
@@ -15,6 +15,8 @@
 </head>
 <body ng-controller="TicTacToeController" ng-model="gameContainer">
 
+	<div class="darkenWindow" ng-show="infoBoxView"></div>
+
 	<h1>Tic Tac Toe</h1>
 
 	<div ng-click="gameEnter()" ng-show="welcomeView">
@@ -26,7 +28,7 @@
 
 		<div><b>About the Game</b>: Click "Start Game" to play a match. After a game is complete, look at past game boards to gain insight on your opponent's strategies or just play another game. It can also be played on two screens simultaneously so find a friend and enjoy!</div>
 
-		<div><b>About the Project</b>: The Tic Tac Toe Data Visualizer was produced by <a href="http://www.nickmro.com" target="_blank">Nick Mrozowski</a> as his first project for General Assembly's <a href="https://generalassemb.ly/education/web-development-immersive" target="_blank">Web Development Immersive</a> program. It was built using AngularJS and Firebase.</div>
+		<div><b>About the Project</b>: This version of Tic Tac Toe was produced by <a href="http://www.nickmro.com" target="_blank">Nick Mrozowski</a> as his first project for General Assembly's <a href="https://generalassemb.ly/education/web-development-immersive" target="_blank">Web Development Immersive</a> program. It was built using AngularJS and Firebase.</div>
 
 		<div class="iconDiv"><a href="https://github.com/nickmro/Tic-Tac-Toe-Game" target="_blank"><i class="fa fa-github fa-2x"></i></a></div>
 
@@ -37,13 +39,13 @@
 
 		<form class="player1Name">
 			<div class="playerSymbol">X</div>
-			<div class="nameDirections"><em>Click name to enter your own.</em></div>
+			<div class="nameDirections"><em>Click below to enter your name.</em></div>
 			<input type="text" ng-model="player1Name" class="nameInput" />
 		</form>
 
 		<form class="player2Name">
 			<div class="playerSymbol">O</div>
-			<div class="nameDirections"><em>Click name to enter your own.</em></div>
+			<div class="nameDirections"><em>Click below to enter your name.</em></div>
 			<input type="text" ng-model="player2Name" class="nameInput" />
 		</form>
 
@@ -65,7 +67,25 @@
 			</div>
 		</div>
 
-		<div class="infoIcon"><i class="fa fa-info-circle fa-2x"></i></div>
+		<div class="infoIcon">
+
+			<div ng-click="triggerInfoBox()"><i class="fa fa-info-circle fa-2x"></i></div>
+
+		</div>
+
+		<div class="infoBox" ng-show="infoBoxView" ng-class="{fadeInUp : infoBoxView}">
+
+			<div class="closeWindow" ng-click="infoBoxView = false">X</div>
+
+			<div class="infoBoxDiv"><i class="fa fa-info-circle fa-2x"></i></div>
+
+			<div class="infoBoxDiv"><b>About the Game</b>: Click "Start Game" to play a match. After a game is complete, look at past game boards to gain insight on your opponent's strategies or just play another game. It can also be played on two screens simultaneously so find a friend and enjoy!</div>
+
+			<div class="infoBoxDiv"><b>About the Project</b>: This version of Tic Tac Toe was produced by <a href="http://www.nickmro.com" target="_blank">Nick Mrozowski</a> as his first project for General Assembly's <a href="https://generalassemb.ly/education/web-development-immersive" target="_blank">Web Development Immersive</a> program. It was built using AngularJS and Firebase.</div>
+
+			<div class="iconDiv infoBoxDiv"><a href="https://github.com/nickmro/Tic-Tac-Toe-Game" target="_blank"><i class="fa fa-github fa-2x"></i></a></div>
+
+		</div>
 
 	</div>
 
@@ -85,7 +105,7 @@
 			</div>
 		</div>
 		<div>
-			<button ng-click="startOver()" class="miniBoardButton">Play Again</button>
+			<div ng-click="startOver()" class="buttonPress">Play Again</div>
 		</div>
 	</div>
 
