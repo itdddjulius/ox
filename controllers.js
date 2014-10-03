@@ -84,6 +84,16 @@ ticTacToe
 			$scope.turn = 0;
 		}
 
+		// Watch player names and update if changed
+
+		$scope.$watch( 'player1Name', function(){
+			$scope.players[0].name = $scope.player1Name;
+		} );
+
+		$scope.$watch( 'player2Name', function(){
+			$scope.players[1].name = $scope.player1Name;
+		} );
+
 
 		// -------- Game Logic ---------- //
 

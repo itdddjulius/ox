@@ -34,6 +34,19 @@
 
 
 	<div class="gameView" ng-show="gameView" >
+
+		<form class="player1Name">
+			<div class="playerSymbol">X</div>
+			<div class="nameDirections"><em>Click name to enter your own.</em></div>
+			<input type="text" ng-model="player1Name" class="nameInput" />
+		</form>
+
+		<form class="player2Name">
+			<div class="playerSymbol">O</div>
+			<div class="nameDirections"><em>Click name to enter your own.</em></div>
+			<input type="text" ng-model="player2Name" class="nameInput" />
+		</form>
+
 		<div class="gameboard" ng-class="{gameOver: gameOver}" ng-model="gameContainer">
 
 			<div ng-repeat="b in gameContainer.board.boxes" ng-click="b.clicked || gameOver || box(b)" ng-class="{tile : b.player == 2, player1 : b.player == 0, player2 : b.player == 1, clicked : b.clicked, noClick : gameOver, player1WinColor : b.colorMe == 'X', player2WinColor : b.colorMe == 'O'}">
@@ -51,6 +64,8 @@
 				<div ng-click="viewPastGames()" class="buttonPress">Past Games</div>
 			</div>
 		</div>
+
+		<div class="infoIcon"><i class="fa fa-info-circle fa-2x"></i></div>
 
 	</div>
 
