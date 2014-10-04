@@ -65,6 +65,8 @@ ticTacToe
 
 		$scope.tie = false;
 
+		$scope.totalGames = 0;
+
 
 
 		// In order to start the game over with a clean board and player data, 
@@ -158,6 +160,7 @@ ticTacToe
 			$scope.colorCombo(props, player.symbol);
 			$scope.gameContainer.board.winner = player.name; //set a property for player winner to be viewed in stats
 			$scope.pastGamesContainer.pastGames.push($scope.gameContainer); //store past games
+			$scope.totalGames+=1; //add one to total games
 		}
 
 		// -------- Tie Function -------- //
@@ -167,6 +170,7 @@ ticTacToe
 			$scope.gameContainer.board.winner = "NA";
 			$scope.pastGamesContainer.pastGames.push($scope.gameContainer); //store past games
 			$scope.tie = true;
+			$scope.totalGames+=1 //add one to total games;
 		}
 
 		// -------- Add Stats Function -------- //
@@ -176,9 +180,16 @@ ticTacToe
 		// -------- Start New Game -------- //
 
 		$scope.startOver = function(){
-			$scope.players = $scope.newPlayers;
-			$scope.players[0].name = $scope.player1Name;
-			$scope.players[1].name = $scope.player2Name;
+			$scope.players = $scope.newPlayers.reverse();
+			if ($scope.totalGames%2 == 0){
+				$scope.players[0].name = $scope.player1Name;
+				$scope.players[1].name = $scope.player2Name;
+			}
+			if ($scope.totalGames%2 == 1){
+				$scope.players[0].name = $scope.player2Name;
+				$scope.players[1].name = $scope.player1Name;
+			}
+			$scope.players.reverse
 			$scope.gameContainer = $scope.newBoard;
 			$scope.gameOver = false;
 			$scope.newPlayers = angular.copy($scope.players);
