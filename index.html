@@ -58,7 +58,7 @@
 		</div>
 
 		<div class="win" ng-show="gameOver">
-			<div class="winStatement" ng-hide="tie">{{currentPlayer.name}} Wins!</div>
+			<div class="winStatement" ng-hide="tie">{{gameContainer.board.winner}} Wins!</div>
 			<div class="winStatement" ng-show="tie">Nobody Wins...</div>
 			<div class="buttonDiv">
 				<div ng-click="startOver()" class="buttonPress">Play Again</div> 

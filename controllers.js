@@ -6,7 +6,9 @@ ticTacToe
 
 		$scope.remoteGameContainer = $firebase(new Firebase("https://nickmro-tic-tac-toe.firebaseio.com/remoteGameContainer"));
 		$scope.remoteTurn = $firebase(new Firebase("https://nickmro-tic-tac-toe.firebaseio.com/remoteTurn"));
-		var playersRef = new Firebase("https://nickmro-tic-tac-toe.firebaseio.com/remotePlayers");
+		$scope.remotePastGamesContainer = $firebase(new Firebase("https://nickmro-tic-tac-toe.firebaseio.com/remotePastGamesContainer"));
+		$scope.remoteGameOver = $firebase(new Firebase("https://nickmro-tic-tac-toe.firebaseio.com/remoteGameOver"));
+		$scope.remotePlayers = $firebase(new Firebase("https://nickmro-tic-tac-toe.firebaseio.com/remotePlayers"));
 
 		// -------- View Different Screens -------- //
 
@@ -38,8 +40,6 @@ ticTacToe
 			],
 			winner: ""
 		};
-
-		$scope.players = $firebase(playersRef);
 
 		$scope.gameContainer = {
 
@@ -84,8 +84,12 @@ ticTacToe
 			
 			$scope.welcomeView = false;
 			$scope.gameView = true;
+			$scope.gameOver = false;
 			$scope.newPlayers = angular.copy($scope.players);
 			$scope.turn = 0;
+			$scope.pastGamesContainer = {
+				pastGames: []
+			};
 		}
 
 		// Watch player names and update if changed
@@ -220,6 +224,9 @@ ticTacToe
 
 		$scope.remoteGameContainer.$bind($scope, "gameContainer");
 		$scope.remoteTurn.$bind($scope, "turn");
+		$scope.remotePastGamesContainer.$bind($scope, "pastGamesContainer");
+		$scope.remoteGameOver.$bind($scope, "gameOver");
+		$scope.remotePlayers.$bind($scope, "players");
 
 		// $scope.$watch("gameContainer", function() {
 		// 	console.log("Model changed!")
