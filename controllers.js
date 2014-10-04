@@ -104,22 +104,18 @@ ticTacToe
 		$scope.$watch( 'player1Name', function(){
 			if ($scope.gameView && ($scope.totalGames % 2 == 0)){
 				$scope.players[0].name = $scope.player1Name;
-				console.log(1);
 			}
 			else if ($scope.gameView && ($scope.totalGames % 2 == 1)){
 				$scope.players[1].name = $scope.player1Name;
-				console.log(2);
 			};
 		} );
 
 		$scope.$watch( 'player2Name', function(){
 			if ($scope.gameView && ($scope.totalGames % 2 == 0)){
 				$scope.players[1].name = $scope.player2Name;
-				console.log(3);
 			}
 			else if ($scope.gameView && ($scope.totalGames % 2 == 1)){
 				$scope.players[0].name = $scope.player2Name;
-				console.log(4);
 			};
 		} );
 
