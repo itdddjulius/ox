@@ -9,6 +9,8 @@ ticTacToe
 		$scope.remotePastGamesContainer = $firebase(new Firebase("https://nickmro-tic-tac-toe.firebaseio.com/remotePastGamesContainer"));
 		$scope.remoteGameOver = $firebase(new Firebase("https://nickmro-tic-tac-toe.firebaseio.com/remoteGameOver"));
 		$scope.remotePlayers = $firebase(new Firebase("https://nickmro-tic-tac-toe.firebaseio.com/remotePlayers"));
+		$scope.remotePlayer1Name = $firebase(new Firebase("https://nickmro-tic-tac-toe.firebaseio.com/remotePlayer1Name"));
+		$scope.remotePlayer2Name = $firebase(new Firebase("https://nickmro-tic-tac-toe.firebaseio.com/remotePlayer2Name"));
 
 		// -------- View Different Screens -------- //
 
@@ -73,10 +75,11 @@ ticTacToe
 
 		// -------- Enter the game -------- //
 
-		$scope.player1Name = "Player 1";
-		$scope.player2Name = "Player 2";
-
 		$scope.gameEnter = function(){
+
+			$scope.player1Name = "Player 1";
+			$scope.player2Name = "Player 2";
+
 			$scope.players = [
 				{ name: $scope.player1Name, symbol: "X", row0: 0, row1: 0, row2: 0, column0: 0, column1: 0, column2: 0, diagonal0: 0, diagonal1: 0},
 				{ name: $scope.player2Name, symbol: "O", row0: 0, row1: 0, row2: 0, column0: 0, column1: 0, column2: 0, diagonal0: 0, diagonal1: 0}
@@ -174,6 +177,8 @@ ticTacToe
 
 		$scope.startOver = function(){
 			$scope.players = $scope.newPlayers;
+			$scope.players[0].name = $scope.player1Name;
+			$scope.players[1].name = $scope.player2Name;
 			$scope.gameContainer = $scope.newBoard;
 			$scope.gameOver = false;
 			$scope.newPlayers = angular.copy($scope.players);
@@ -227,6 +232,8 @@ ticTacToe
 		$scope.remotePastGamesContainer.$bind($scope, "pastGamesContainer");
 		$scope.remoteGameOver.$bind($scope, "gameOver");
 		$scope.remotePlayers.$bind($scope, "players");
+		$scope.remotePlayer1Name.$bind($scope, "player1Name");
+		$scope.remotePlayer2Name.$bind($scope, "player2Name");
 
 		// $scope.$watch("gameContainer", function() {
 		// 	console.log("Model changed!")
