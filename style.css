@@ -64,12 +64,6 @@ a:hover{
   color: #aaa;
 }
 
-img{
-  margin: 70px auto 10px;
-  width: 150px;
-  cursor:pointer;
-}
-
 /* -------- Welcome Panel -------- */
 
 .welcome{
@@ -79,6 +73,23 @@ img{
 
 .welcome>button{
   margin: 120px auto;
+}
+
+.logo{
+  background: url(images/logoxo.png) 0 0;
+  background-repeat: no-repeat;
+  height: 145px;
+  width: 200px;
+  margin: 70px auto 10px;
+  cursor: pointer;
+}
+
+.logo:hover{
+  background: url(images/logoxo.png) 0 -149px;
+  background-repeat: no-repeat;
+  height: 145px;
+  width: 200px;
+  margin: 70px auto 10px;
 }
 
 .start{
