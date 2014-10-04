@@ -37,13 +37,13 @@
 
 	<div class="gameView" ng-show="gameView" >
 
-		<form class="player1Name">
+		<form class="player1Name" ng-class="{ playerTurn : currentPlayer.symbol == 'X' }">
 			<div class="playerSymbol">X</div>
 			<div class="nameDirections"><em>Click below to enter your name.</em></div>
 			<input type="text" ng-model="player1Name" class="nameInput" />
 		</form>
 
-		<form class="player2Name">
+		<form class="player2Name" ng-class="{ playerTurn : currentPlayer.symbol == 'O' }">
 			<div class="playerSymbol">O</div>
 			<div class="nameDirections"><em>Click below to enter your name.</em></div>
 			<input type="text" ng-model="player2Name" class="nameInput" />

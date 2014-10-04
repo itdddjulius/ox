@@ -86,6 +86,8 @@ ticTacToe
 				{ name: $scope.player1Name, symbol: "X", row0: 0, row1: 0, row2: 0, column0: 0, column1: 0, column2: 0, diagonal0: 0, diagonal1: 0},
 				{ name: $scope.player2Name, symbol: "O", row0: 0, row1: 0, row2: 0, column0: 0, column1: 0, column2: 0, diagonal0: 0, diagonal1: 0}
 			];
+
+			$scope.currentPlayer = $scope.players[0];
 			
 			$scope.welcomeView = false;
 			$scope.gameView = true;
@@ -100,14 +102,24 @@ ticTacToe
 		// Watch player names and update if changed
 
 		$scope.$watch( 'player1Name', function(){
-			if ($scope.gameView){
+			if ($scope.gameView && ($scope.totalGames % 2 == 0)){
 				$scope.players[0].name = $scope.player1Name;
+				console.log(1);
+			}
+			else if ($scope.gameView && ($scope.totalGames % 2 == 1)){
+				$scope.players[1].name = $scope.player1Name;
+				console.log(2);
 			};
 		} );
 
 		$scope.$watch( 'player2Name', function(){
-			if ($scope.gameView){
+			if ($scope.gameView && ($scope.totalGames % 2 == 0)){
 				$scope.players[1].name = $scope.player2Name;
+				console.log(3);
+			}
+			else if ($scope.gameView && ($scope.totalGames % 2 == 1)){
+				$scope.players[0].name = $scope.player2Name;
+				console.log(4);
 			};
 		} );
 
@@ -121,6 +133,7 @@ ticTacToe
 				var playTurn = $scope.turn %2 ;
 				var playerName = $scope.players[playTurn].name;
 				var player = $scope.players[playTurn];
+				$scope.currentPlayer = $scope.players[($scope.turn + 1) %2];
 				var playerString = "players[" + playTurn + "]";
 				eval("$scope."+ playerString +".row"+(Math.floor(cellId / 3))+"++");
 				eval("$scope."+playerString+".column"+(cellId % 3)+"++");
@@ -198,6 +211,7 @@ ticTacToe
 			$scope.tie = false;
 			$scope.pastView = false;
 			$scope.gameView = true;
+			$scope.currentPlayer = $scope.players[0];
 		}
 
 		// -------- View Past Games -------- //
