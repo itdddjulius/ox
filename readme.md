@@ -16,7 +16,7 @@ This project utilizes [AngularJS](https://angularjs.org/) to dynamically synchro
 
 ## How To Use
 
-The game can be played [here](http://www.raiiiar.com/ox/).
+The game can be played [here](https://www.raiiar.com.ng/ox/).
 
 Click "Start Game" to play a match. After the match is complete, look at past game boards to gain insight on your opponent's strategies or continue to play another game.
 
