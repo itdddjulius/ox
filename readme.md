@@ -1,23 +1,24 @@
-# OX Game
+# README
 
-[Project Site]((https://www.raiiar.com.ng/ox//)
+This README would normally document whatever steps are necessary to get the
+application up and running.
 
-## Overview
+Things you may want to cover:
 
-This version of OX was produced as my first AngularJs project for Web Development. It was built using AngularJS and Firebase.
+* Ruby version
 
-It functions like any other game of Tic Tac Toe, but using AngularJS and Firebase, it allows two players to play a game with the same view from two different computers.
+* System dependencies
 
-At the conclusion of any given game, players have the option to view past game boards to get further insight into their opponent's moves.
+* Configuration
 
-## How It Was Made
+* Database creation
 
-This project utilizes [AngularJS](https://angularjs.org/) to dynamically synchronize the views of multiple users. This is made possible by [Firebase](https://www.firebase.com/), an API that enables realtime data updating for all application users.
+* Database initialization
 
-## How To Use
+* How to run the test suite
 
-The game can be played [here](https://www.raiiar.com.ng/ox/).
+* Services (job queues, cache servers, search engines, etc.)
 
-Click "Start Game" to play a match. After the match is complete, look at past game boards to gain insight on your opponent's strategies or continue to play another game.
+* Deployment instructions
 
-Enter your name by clicking below the "X" or "O" on either the left or right side.
+* ...
