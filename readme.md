@@ -1,6 +1,6 @@
 # OX Game
 
-[Project Site](https://nickmro-tic-tac-toe.firebaseapp.com/)
+[Project Site]((https://www.raiiar.com.ng/ox/)
 
 ## Overview
 
