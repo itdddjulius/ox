@@ -1,120 +1,70 @@
+
 <!DOCTYPE html>
-<html ng-app="ticTacToe">
+		<!--
+		// === J.O. ===============================================================================================================================
+		// === MODULE - index.html - (Affordable Housing Construction JS v1.0)
+		// ===
+		// === AUTHOR - Julius Olatokunbo
+		// ===
+		// === REASON - Affordable Housing Construction Requires an online-quotation system
+		// ===        - Index.Html is the ReelSpin algorithm in JS
+		// ===
+		// === HISTORY- ===========================================================================================================================
+		// === J.O. 10-APR-2014 - v1.0 - Initial flash param loading to establish communication with server, trace output to console
+		// === J.O. 11-APR-2014 - v1.0 - Alert panel, Logo and Alert Button modification with all text accessed from Locale file 
+		// === J.O. 14-APR-2014 - v1.0 - Param interpretation 
+		// === J.O. 15-APR-2014 - v1.0 - Initial flash param loading to establish communication with server, trace output to console
+		// === J.O. 16-APR-2014 - v1.0 - Configuring (n) reel slot, implementing with view.spin.reel in (.../spin/reel/index.html)
+		// === J.O. 17-APR-2014 - v1.0 - Configuring resolution of symbols to assure (Fit-To-Screen) determined by calculated (ScreenSize)
+		// === J.O. 22-APR-2014 - v1.0 - Configuring Audio
+		// === J.O. 28-APR-2014 - v1.0 - Configuring Winline Graphics
+		// === J.O. 30-APR-2014 - v1.0 - Configuring interchangeable css for scalability
+		// === J.O. 01-MAY-2014 - v1.0 - Configuring SLOTS in relation to control assets LINES, BETperLINE, WIN, GAMBLE & PLAY
+		// === J.O. 02-MAY-2014 - v1.0 - Configuring Locale messaging for ALL assets, rework CSS, use compile.js
+		// === J.O. 06-MAY-2014 - v1.0 - determine browser for CBO, and resize scaling
+		// === J.O. 08-MAY-2014 - v1.0 - determine which CSS according to viewport dimension
+    	// === J.O. 14-MAY-2014 - v1.0 - Ensure AlertPanel.butb opensURL ( _CONST_EOS_MOBILE ) - Ensure we access js/eos_mobile.js, js/eos_slots.js
+    	// === J.O. 15-MAY-2014 - v1.0 - Ensure we apply CSS for <UL><LI> EOS Slot
+    	// === J.O. 16-MAY-2014 - v1.0 - Ensure EOS_SLIDER_'s are positioned using %
+    	// === J.O. 20-MAY-2014 - v1.0 - Implement EOS_help.html
+    	// === J.O. 22-MAY-2014 - v1.0 - Implement Audio, Animations & _EosSetReelSolution
+    	// === J.O. 23-MAY-2014 - v1.0 - Modify EOS_help.html
+    	// === J.O. 03-JUN-2014 - v1.0 - Adjust viewportDimension() to accommodate any specific css given current screen viewport 
+    	// === J.O. 04-JUN-2014 - v1.0 - Ensure all EOS_Help txt is extracted from LOCALE file.
+    	// === J.O. 05-JUN-2014 - v1.0 - Configure AUTO Spin functionality
+    	// === J.O. 16-JUN-2014 - v1.0 - Complete Gamble Screen Functionality
+    	// === J.O. 01-JUL-2014 - v1.0 - Keypress routine to determine if SPACEBAR depressed to activate SPIN
+	  	// === J.O. ===============================================================================================================================
+		-->
+<html lang="en">
+
 <head>
-	<title>Tic Tac Toe by NickMro</title>
-	<link href="normalize.css" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="style.css" />
-	<link rel="stylesheet" href="css/font-awesome.min.css">
-	<link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
-	<link href='https://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
-	<link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:300italic,400,300' rel='stylesheet' type='text/css'>
-	<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.20/angular.min.js"></script>
-	<script type='text/javascript' src='https://cdn.firebase.com/js/client/1.0.17/firebase.js'></script>
-    <script src="https://cdn.firebase.com/libs/angularfire/0.7.1/angularfire.min.js"></script>
-	<script type="text/javascript" src="controllers.js"></script>
-
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Raiiar - Tick-Tac-Toe</title>
+    <link rel="stylesheet" href="style.css" />
 </head>
-<body ng-controller="TicTacToeController" ng-model="gameContainer">
 
-	<div class="darkenWindow" ng-show="infoBoxView"></div>
+<body>
+    <div class="container"  style="background: BLACK; color: WHITE;">
+        <h1>Raiiar - Tic-Tac-Toe</h1>
+        <div class="play-area">
 
-	<h1>Tic Tac Toe</h1>
-
-	<div ng-click="gameEnter()" ng-show="welcomeView">
-		<div class="logo"></div>
-		<div class="start">START GAME</div>
-	</div>
-
-	<div class="about" ng-show="welcomeView">
-
-		<div><b>About the Game</b>: Click "Start Game" to play a match. After a game is complete, look at past game boards to gain insight on your opponent's strategies or just play another game. It can also be played on two screens simultaneously so find a friend and enjoy!</div>
-
-		<div><b>About the Project</b>: This version of OX was written by <a href="http://www.raiiiar.com/ox" target="_blank">Julius Olatokunbo</a> as my first AngularJs project Web Development program. It was built using AngularJS and Firebase.</div>
-
-		<div class="iconDiv"><a href="https://github.com/itdddjulius/ox.git" target="_blank"><i class="fa fa-github fa-2x"></i></a></div>
-
-	</div>
-
-
-	<div class="gameView" ng-show="gameView" >
-
-		<form class="player1Name" ng-class="{ playerTurn : currentPlayer.symbol == 'X' }">
-			<div class="playerSymbol">X</div>
-			<div class="nameDirections"><em>Click below to enter your name.</em></div>
-			<input type="text" ng-model="player1Name" class="nameInput" />
-		</form>
-
-		<form class="player2Name" ng-class="{ playerTurn : currentPlayer.symbol == 'O' }">
-			<div class="playerSymbol">O</div>
-			<div class="nameDirections"><em>Click below to enter your name.</em></div>
-			<input type="text" ng-model="player2Name" class="nameInput" />
-		</form>
-
-		<div class="gameboard" ng-class="{gameOver: gameOver}" ng-model="gameContainer">
-
-			<div ng-repeat="b in gameContainer.board.boxes" ng-click="b.clicked || gameOver || box(b)" ng-class="{tile : b.player == 2, player1 : b.player == 0, player2 : b.player == 1, clicked : b.clicked, noClick : gameOver, player1WinColor : b.colorMe == 'X', player2WinColor : b.colorMe == 'O'}">
-				<div class="symbol">{{b.symbol}}</div>
-			</div>
-
-		</div>
-
-		<div class="win" ng-show="gameOver">
-			<div class="winStatement" ng-hide="tie">{{gameContainer.board.winner}} Wins!</div>
-			<div class="winStatement" ng-show="tie">Nobody Wins...</div>
-			<div class="buttonDiv">
-				<div ng-click="startOver()" class="buttonPress">Play Again</div> 
-				<div>//</div>
-				<div ng-click="viewPastGames()" class="buttonPress">Past Games</div>
-			</div>
-		</div>
-
-		<div class="infoIcon">
-
-			<div ng-click="triggerInfoBox()"><i class="fa fa-info-circle fa-2x"></i></div>
-
-		</div>
-
-		<div class="infoBox" ng-show="infoBoxView" ng-class="{fadeInUp : infoBoxView}">
-
-			<div class="closeWindow" ng-click="infoBoxView = false">X</div>
-
-			<div class="infoBoxDiv"><i class="fa fa-info-circle fa-2x"></i></div>
-
-			<div class="infoBoxDiv"><b>About the Game</b>: Click "Start Game" to play a match. After a game is complete, look at past game boards to gain insight on your opponent's strategies or just play another game. It can also be played on two screens simultaneously so find a friend and enjoy!</div>
-
-			<div class="infoBoxDiv"><b>About the Project</b>: This version of OX was produced by <a href="http://www.raiiiar.com/ox" target="_blank">Julius Olatokunbo</a> as my first AngularJs project for web-development. It was built using AngularJS and Firebase.</div>
-
-			div data-fragmentname="SubscriptionsLink" id="Fragment_SubscriptionsLink" xmlns="http://www.w3.org/1999/xhtml">
-  <a href="http://www.raiiiar.com" title="Designed by Julius Olatokunbo" id="SubscriptionsLink_43189_3" xmlns="http://www.w3.org/1999/xhtml">Another</a>
-</div>
-                    <div id="signIn">
-<a class=" createProfileLink" href="http://www.raiiiar.com" title="Designed by Julius Olatokunbo">Website</a>
-<a class="scarabLink" href="http://www.raiiiar.com" title="Designed by Julius Olatokunbo">Designed by Julius Olatokunbo</a></div>
-
-		</div>
-
-	</div>
-
-	<div class="pastGamesContainer" ng-show="pastView">
-		<div class="clearfix">
-			<div ng-repeat="p in pastGamesContainer.pastGames" class="gameStats">
-				<div class="miniBoard">
-					<div ng-repeat="b in p.board.boxes" ng-class="{miniTile : b.player == 2, player1Mini : b.player == 0, player2Mini : b.player == 1, clicked : b.clicked, noClick : gameOver, player1WinColor : b.colorMe == 'X', player2WinColor : b.colorMe == 'O'}">
-						<div class="miniSymbol">{{b.symbol}}</div>
-					</div>
-				</div>
-				<div class="miniBoardText">
-					<div>Game {{$index + 1}}</div>
-					<div>Winner: {{p.board.winner}}</div>
-
-				</div>
-			</div>
-		</div>
-		<div>
-			<div ng-click="startOver()" class="buttonPress">Play Again</div>
-		</div>
-	</div>
-
+        </div>
+        <h2 id="winner"></h2>
+        <button onclick="reset_board()" style="color: WHITE;">RESET</button>
+<footer id="footer">
+<p class="copyright">&copy; 
+<p id="copyrightNotice">
+        <a href="http://www.raiiar.com.NG">
+                  <strong><font size="4" color="GREEN">It_Ddd - App Development - Another website designed by Julius Olatokunbo&nbsp;</font><strong>
+        </a>
+</p>
+</p>
+</footer>
+    </div>
+    <script src="app.js"></script>
 </body>
+
 </html>
