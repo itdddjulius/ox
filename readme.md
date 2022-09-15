@@ -1,6 +1,6 @@
 # OX Game
 
-[Project Site]((https://www.raiiar.com.ng/ox/)
+[Project Site]((https://www.raiiar.com.ng/ox//)
 
 ## Overview
 
